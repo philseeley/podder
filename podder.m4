@@ -108,6 +108,23 @@ process_conf () \
 
   [ $conf != - -a ! -f $conf ] && { echo "Config file '$conf' does not exist"; return; }
 
+  # Check that we're not already processing this config file.
+  lock=$conf.lock
+
+  if [ -e $lock ]
+  then
+    if [ ! -d /proc/$(cat $lock) ]
+    then
+      echo "Removing stale lock file '$lock'"
+      rm -f $lock
+    else
+      echo "Config file '$conf' is currently being processed"
+      exit 1
+    fi
+  fi
+
+  echo $$ > $lock
+
   cd $(dirname $conf)
   conf=$(basename $conf)
 
@@ -183,6 +200,8 @@ process_conf () \
       done
     )
   done
+
+  rm -f $lock
 )
 
 # If we get interrupted we just want to exit rather than going on.

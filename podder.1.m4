@@ -14,6 +14,8 @@ turned on and off for each config file. Options stay in effect for all following
 \fIconfig-file\fRs.
 All the podcasts will be downloaded relative to the location of each
 \fIconfig-file\fR, one sub-directory is created per feed.
+Locking is performed to stop a \fIconfig-file\fR from being processed
+multiple times.
 
 The \fB<title>\fRs in the feeds are used to name
 the feed directories and the downloaded files unless overridden with the

@@ -1,4 +1,4 @@
-.TH podder "1" "$Date: 2008/02/06 14:36:35 $" podder "User Commands"
+.TH podder "1" "__DATE__" podder "User Commands"
 .SH NAME
 
 podder \- Command line utility for downloading podcasts
@@ -39,7 +39,7 @@ to the \fIurl\fR and not any following ones.
 .SH OPTIONS
 
 Options can be turned on (+) and off (-). Note that this differs from normal
-option processing, but make more sense.
+option processing, but makes more sense.
 
 All options are valid on the command line and for each feed. Specifying
 \fB{+|-}c\fR \fIconfig-file\fR in the per-feed options is also valid, but any

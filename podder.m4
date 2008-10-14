@@ -1,7 +1,7 @@
 #!/bin/bash
-# $Header: /home/Phil/cvsroot/podder/podder,v 1.10 2007/10/20 20:40:33 Phil Exp $
+`#' podder: __VERSION__ __DATE__
 #
-# Author: Phil Seeley
+# Author: Phil Seeley <phil_seeley@hotmail.com>
 
 usage () \
 {

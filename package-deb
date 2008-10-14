@@ -1,0 +1,24 @@
+#!/bin/bash
+
+date=$(date +"%a, %d %b %Y %T %z")
+
+mkdir -p deb-packages debian/DEBIAN debian/usr/bin debian/usr/share/man/man1 debian/usr/share/doc/podder
+
+grep '^  \*' changelog.m4 |
+(
+  read discard version discard
+
+  m4 -D__VERSION__=$version                    control.m4   > debian/DEBIAN/control
+  m4 -D__DATE__="$date"                        podder.1.m4  > debian/usr/share/man/man1/podder.1
+  m4 -D__VERSION__=$version -D__DATE__="$date" podder.m4    > debian/usr/bin/podder
+  m4 -D__VERSION__=$version -D__DATE__="$date" changelog.m4 > debian/usr/share/doc/podder/changelog
+  m4 -D__VERSION__=$version -D__DATE__="$date" changelog.m4 > debian/usr/share/doc/podder/changelog.Debian
+)
+
+cp copyright debian/usr/share/doc/podder
+
+chmod +x debian/usr/bin/podder
+
+gzip --best debian/usr/share/man/man1/* debian/usr/share/doc/podder/changelog*
+
+fakeroot dpkg-deb --build debian deb-packages

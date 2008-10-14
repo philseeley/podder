@@ -1,4 +1,4 @@
-.TH podder "1" "__DATE__" podder "User Commands"
+.TH podder "1" "Version __VERSION__ __DATE__" podder "User Commands"
 .SH NAME
 
 podder \- Command line utility for downloading podcasts

@@ -1,5 +1,5 @@
 Package: podder
-Version: __VERSION__
+Version: __VERSION__-__RELEASE__
 Section: net
 Priority: optional
 Architecture: all

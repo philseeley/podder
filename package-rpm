@@ -1,0 +1,31 @@
+#!/bin/bash
+
+if [ $(id -un) != root ]
+then
+  echo RPMs can only be built as root
+  exit -1
+fi
+
+umask 0022
+
+date=$(date +"%a, %d %b %Y %T %z")
+
+mkdir -p rpm-packages redhat /usr/share/doc/podder
+
+grep '^  \*' changelog.m4 |
+(
+  read discard version release discard
+
+  m4 -D__VERSION__=$version -D__RELEASE__=$release                    podder.spec.m4 > redhat/podder.spec
+  m4 -D__VERSION__=$version -D__DATE__="$date"                        podder.1.m4    > /usr/share/man/man1/podder.1
+  m4 -D__VERSION__=$version -D__DATE__="$date" -Ushift                podder.m4      > /usr/bin/podder
+  m4 -D__VERSION__=$version -D__RELEASE__=$release -D__DATE__="$date" changelog.m4   > /usr/share/doc/podder/Changelog
+)
+
+chmod +x /usr/bin/podder
+
+gzip --force --best /usr/share/man/man1/podder.1
+
+rpmbuild -bb redhat/podder.spec
+
+mv /usr/src/redhat/RPMS/noarch/podder* rpm-packages

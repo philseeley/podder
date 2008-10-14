@@ -1,7 +1,11 @@
-all: deb
+all:
+	@echo Specify one of deb or rpm
 
 deb:
 	./package-deb
 
+rpm:
+	./package-rpm
+
 clean:
-	rm -rf debian
+	rm -rf debian redhat

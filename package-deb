@@ -1,5 +1,7 @@
 #!/bin/bash
 
+umask 0022
+
 date=$(date +"%a, %d %b %Y %T %z")
 
 mkdir -p deb-packages debian/DEBIAN debian/usr/bin debian/usr/share/man/man1 debian/usr/share/doc/podder

@@ -1,5 +1,7 @@
 podder (__VERSION__-__RELEASE__) stable; urgency=low
 
+  * 1.2 1 Empty lock files are now handled correctly
+          Lock files are also correctly placed with the config files.
   * 1.1 1 Added locking
           This stops a config file from being processed multiple times.
   * 1.0 1 Initial release

@@ -21,6 +21,6 @@ cp copyright debian/usr/share/doc/podder
 
 chmod +x debian/usr/bin/podder
 
-gzip --best debian/usr/share/man/man1/* debian/usr/share/doc/podder/changelog*
+gzip --force --best debian/usr/share/man/man1/* debian/usr/share/doc/podder/changelog*
 
 fakeroot dpkg-deb --build debian deb-packages

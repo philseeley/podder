@@ -108,10 +108,13 @@ process_conf () \
 
   [ $conf != - -a ! -f $conf ] && { echo "Config file '$conf' does not exist"; return; }
 
+  cd $(dirname $conf)
+  conf=$(basename $conf)
+
   # Check that we're not already processing this config file.
   lock=$conf.lock
 
-  if [ -e $lock ]
+  if [ -s $lock ]
   then
     if [ ! -d /proc/$(cat $lock) ]
     then
@@ -124,9 +127,6 @@ process_conf () \
   fi
 
   echo $$ > $lock
-
-  cd $(dirname $conf)
-  conf=$(basename $conf)
 
   # We have a log file for each config file.
   log=$conf.log

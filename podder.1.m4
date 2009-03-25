@@ -94,6 +94,10 @@ verbose output. Enables output from wget.
 limits the download speed to \fILIMIT\fR bytes per second. \fILIMIT\fR may be
 expressed in bytes, kilobytes with the k suffix, or megabytes with the m suffix.
 
+.TP
+\fB{+|-}p\fR
+write podder.m3u playlist files. On by default.
+
 .SH EXAMPLES
 
 To download all podcasts to a single dated directory:

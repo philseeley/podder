@@ -16,6 +16,7 @@ usage () \
   echo "  {+|-}v       verbose output"
   echo "  {+|-}l LIMIT limit the download to LIMIT per second"
   echo "  {+|-}p       write podder.m3u playlist files"
+  echo "  {+|-}a       write podder.m3u playlist files alphabetically"
   exit 1
 }
 
@@ -37,6 +38,7 @@ wget=wget
 
 # By default we write .m3u files
 playlist=true
+playlist_opts=-1tr
 
 parse_opts () \
 {
@@ -71,6 +73,8 @@ parse_opts () \
       l) limit=; [ "$on" ] && { limit=--limit-rate=$2; shift; }
          ;;
       p) playlist=$on
+         ;;
+      a) playlist_opts=-1tr; [ "$on" ] && playlist_opts=
          ;;
       ?) usage
          ;;
@@ -199,7 +203,7 @@ process_conf () \
             (( --catchup ))
 
             # Create a play list.
-            [ "$playlist" ] && (cd $date_dir$feed_dir; ls -1tr | grep -v '\.m3u$' > podder.m3u)
+            [ "$playlist" ] && (cd $date_dir$feed_dir; ls $playlist_opts | grep -v '\.m3u$' > podder.m3u)
           fi
         fi
       done

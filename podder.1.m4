@@ -98,6 +98,11 @@ expressed in bytes, kilobytes with the k suffix, or megabytes with the m suffix.
 \fB{+|-}p\fR
 write podder.m3u playlist files. On by default.
 
+.TP
+\fB{+|-}a\fR
+write podder.m3u playlist files alphabetically. By default the files are written in modification
+time order, which wget attempts to take from the source file.
+
 .SH EXAMPLES
 
 To download all podcasts to a single dated directory:

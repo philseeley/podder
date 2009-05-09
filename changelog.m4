@@ -1,5 +1,7 @@
 podder (__VERSION__-__RELEASE__) stable; urgency=low
 
+  * 1.4 1 Added +a option
+          This allows playlists (podder.m3u) files to be written alphabetically.
   * 1.3 1 Added -p option
           This allows playlists (podder.m3u) files to be suppressed.
   * 1.2 1 Empty lock files are now handled correctly

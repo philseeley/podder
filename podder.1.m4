@@ -96,12 +96,17 @@ expressed in bytes, kilobytes with the k suffix, or megabytes with the m suffix.
 
 .TP
 \fB{+|-}p\fR
-write podder.m3u playlist files. On by default.
+write .m3u playlist files. On by default.
 
 .TP
 \fB{+|-}a\fR
-write podder.m3u playlist files alphabetically. By default the files are written in modification
+write .m3u playlist files alphabetically. By default the files are written in modification
 time order, which wget attempts to take from the source file.
+
+.TP
+\fB{+|-}n\fR
+write .m3u playlist files using the directory name as the playlist name. By default the files
+are called \fBpodder.m3u\fR.
 
 .SH EXAMPLES
 

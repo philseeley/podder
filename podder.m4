@@ -21,8 +21,8 @@ usage () \
   exit 1
 }
 
-# Characters that shouldn't be in filenames.
-bad_chars=' *?!|\\/"{}<>:;,^()~$&#'\'
+# We only want regular characters in the filenames.
+good_chars='a-zA-Z0-9_-'
 
 # By default we don't generate output from wget.
 verbose=-q
@@ -157,7 +157,7 @@ process_conf () \
 
       read feed_title
 
-      feed_title=${feed_title//["$bad_chars"]/_}
+      feed_title=${feed_title//[^${good_chars}]/_}
 
       parse_opts $opts
 
@@ -171,7 +171,7 @@ process_conf () \
       do
         read url
 
-        title=${title//["$bad_chars"]/_}
+        title=${title//[^${good_chars}]/_}
 
         to_log=$url
         [ "$log_file_only" ] && to_log=$(basename $url)

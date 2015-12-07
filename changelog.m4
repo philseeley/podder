@@ -1,5 +1,7 @@
 podder (__VERSION__-__RELEASE__) stable; urgency=low
 
+  * 1.5 2 Fix the removal the bad characters from the filenames
+          We now only allow "a-zA-Z0.9_-" in the filenames rather than trying to specify all the bad characters.
   * 1.5 1 Added +n option
           This allows playlists (.m3u) files to be given the name of the containing directory.
   * 1.4 1 Added +a option

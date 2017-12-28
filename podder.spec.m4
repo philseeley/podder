@@ -8,7 +8,7 @@ Group:		Applications/Web
 License:	GPL >= v2
 BuildArch:	noarch
 BuildRoot:	%{_builddir}
-Packager:	Phil Seeley <phil_seeley@hotmail.com>
+Packager:	Phil Seeley <phil.seeley@gmail.com>
 Requires:		wget, /usr/bin/xsltproc
 
 %description

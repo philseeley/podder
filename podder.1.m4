@@ -152,7 +152,7 @@ Written by Phil Seeley. Inspired by Linc Fessenden's bashpodder.
 The complete flexibility in option specifications was more interesting to
 write, rather than being strictly necessary.
 
-Report bugs to <phil_seeley@hotmail.com>.
+Report bugs to <phil.seeley@gmail.com>.
 
 .SH "SEE ALSO"
 

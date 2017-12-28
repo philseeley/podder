@@ -1,7 +1,7 @@
 #!/bin/bash
 `#' podder: __VERSION__ __DATE__
 #
-# Author: Phil Seeley <phil_seeley@hotmail.com>
+# Author: Phil Seeley <phil.seeley@gmail.com>
 
 usage () \
 {

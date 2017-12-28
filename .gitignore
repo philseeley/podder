@@ -1,4 +1,6 @@
 deb-packages
 rpm-packages
+installer-packages
 redhat
 debian
+installer

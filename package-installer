@@ -1,0 +1,26 @@
+#!/bin/bash
+
+umask 0022
+
+date=$(date +"%a, %d %b %Y %T %z")
+
+rm -rf synology
+mkdir -p installer installer-packages 
+
+grep '^  \*' changelog.m4 |
+(
+  read discard version release discard
+
+  m4 -D__VERSION__=$version -D__DATE__="$date" -Ushift podder.m4 > installer/podder
+
+  cp /usr/bin/xsltproc installer/
+  chmod +x installer/*
+
+  (
+    cd installer
+    cat ../podder-install.sh
+    tar czf - *
+  ) > installer-packages/podder-${version}.${release}-install.sh
+
+  chmod +x installer-packages/podder-${version}.${release}-install.sh
+)

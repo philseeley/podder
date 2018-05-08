@@ -1,5 +1,7 @@
 podder (__VERSION__-__RELEASE__) stable; urgency=low
 
+  * 1.6 1 We now use curl so that https feeds can be supported.
+          xsltproc doesn't support SSL/TLS.
   * 1.5 2 Fix the removal the bad characters from the filenames
           We now only allow "a-zA-Z0.9_-" in the filenames rather than trying to specify all the bad characters.
   * 1.5 1 Added +n option

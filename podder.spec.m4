@@ -9,7 +9,7 @@ License:	GPL >= v2
 BuildArch:	noarch
 BuildRoot:	%{_builddir}
 Packager:	Phil Seeley <phil.seeley@gmail.com>
-Requires:		wget, /usr/bin/xsltproc
+Requires:	wget, curl, /usr/bin/xsltproc
 
 %description
 podder reads the list of feeds from one of more configuration

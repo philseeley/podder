@@ -91,27 +91,42 @@ parse_opts () \
   done
 }
 
+tidy () \
+{
+  rm ${style}
+}
+
+mkstyle () \
+{
+if [ ! "${style}" ]
+then
+  style=$(mktemp)
+  trap tidy EXIT
+  cat <<-__EOF >${styke}
+	<?xml version="1.0"?>
+	<stylesheet version="1.0"
+	  xmlns="http://www.w3.org/1999/XSL/Transform">
+	  <output method="text"/>
+	  <template match="/">
+	    <apply-templates select="rss/channel/title"/><text>&#10;</text>
+	    <apply-templates select="rss/channel/item"/>
+	  </template>
+	  <template match="item">
+	    <value-of select="title"/><text>&#10;</text>
+	    <value-of select="enclosure/@url"/><text>&#10;</text>
+	  </template>
+	</stylesheet>
+	__EOF
+fi
+}
+
 # Function to parse out the podcast info from a feed.
 # The output starts with the title of the feed, then for each item
 # we output it's title and enclosure url.
 
 parse () \
 {
-cat <<__EOF | xsltproc - $1
-<?xml version="1.0"?>
-<stylesheet version="1.0"
-  xmlns="http://www.w3.org/1999/XSL/Transform">
-  <output method="text"/>
-  <template match="/">
-    <apply-templates select="rss/channel/title"/><text>&#10;</text>
-    <apply-templates select="rss/channel/item"/>
-  </template>
-  <template match="item">
-    <value-of select="title"/><text>&#10;</text>
-    <value-of select="enclosure/@url"/><text>&#10;</text>
-  </template>
-</stylesheet>
-__EOF
+ curl "$1" | xsltproc ${style} -
 }
 
 process_conf () \

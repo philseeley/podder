@@ -102,7 +102,7 @@ if [ ! "${style}" ]
 then
   style=$(mktemp)
   trap tidy EXIT
-  cat <<-__EOF >${styke}
+  cat <<-__EOF >${style}
 	<?xml version="1.0"?>
 	<stylesheet version="1.0"
 	  xmlns="http://www.w3.org/1999/XSL/Transform">
@@ -126,7 +126,8 @@ fi
 
 parse () \
 {
- curl "$1" | xsltproc ${style} -
+  mkstyle
+  curl -s -S "$1" | xsltproc ${style} -
 }
 
 process_conf () \

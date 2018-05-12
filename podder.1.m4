@@ -165,4 +165,4 @@ Report bugs to <phil.seeley@gmail.com>.
 .\" the GNU General Public License <http://www.gnu.org/licenses/gpl.html>.
 .\" There is NO WARRANTY, to the extent permitted by law.
 .\" .SH "SEE ALSO"
-.\" wget, xsltproc
+.\" wget, xsltproc, curl

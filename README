@@ -1,0 +1,95 @@
+podder(1)                                                              User Commands                                                             podder(1)
+
+NAME
+       podder - Command line utility for downloading podcasts
+
+SYNOPSIS
+       podder [OPTIONS] +c config-file [[OPTIONS] +c config-file] ...
+
+DESCRIPTION
+       config-files  are processed in the order specified. Options can be turned on and off for each config file. Options stay in effect for all following
+       config-files.  All the podcasts will be downloaded relative to the location of each config-file, one sub-directory is created per feed.  Locking is
+       performed to stop a config-file from being processed multiple times.
+
+       The  <title>s  in the feeds are used to name the feed directories and the downloaded files unless overridden with the +d or +f options.  A log file
+       config-file.log is created to record downloaded podcasts.
+
+       Specifying config-file as "-" will read the list of feeds from standard input. In this case all the feed directories will be  created  relative  to
+       the current working directory and the log file will be "-.log".
+
+CONFIGURATION FILE FORMAT
+       The config-file contains one line per feed of the form:
+
+              url [OPTIONS]
+
+       All OPTIONS are applied before the feed is processed and only apply to the url and not any following ones.
+
+OPTIONS
+       Options can be turned on (+) and off (-). Note that this differs from normal option processing, but makes more sense.
+
+       All  options are valid on the command line and for each feed. Specifying {+|-}c config-file in the per-feed options is also valid, but any directo‐
+       ries will be relative to the including config-file.
+
+       {+|-}c config-file
+              process config file config-file.
+
+       +C NUM|-C
+              catch up. Only downloads the first NUM podcasts.  Useful if it's the first time you're downloading a feed and only want to  start  with  the
+              most recent episodes. Specify 0 to avoid all downloads.
+
+       +d DIR|-d
+              use DIR as the directory to store the feed in, rather then using the feed's <title>.
+
+       {+|-}D create a date directory at the top level.  A directory of the form yyyy-mm-dd is created above the feed directories.
+
+       {+|-}f use the filenames of the podcasts rather than their <title>s.
+
+       {+|-}F store just the filenames of the podcasts in the log file, rather than the complete URL. This is useful for feeds that move hosts.
+
+       {+|-}q quiet output. Useful in crontabs.
+
+       {+|-}t test what would be downloaded. No actual downloads are performed and no log entries are written.
+
+       {+|-}v verbose output. Enables output from wget.
+
+       +l LIMIT|-l
+              limits  the  download speed to LIMIT bytes per second. LIMIT may be expressed in bytes, kilobytes with the k suffix, or megabytes with the m
+              suffix.
+
+       {+|-}p write .m3u playlist files. On by default.
+
+       {+|-}a write .m3u playlist files alphabetically. By default the files are written in modification time order, which wget attempts to take from  the
+              source file.
+
+       {+|-}n write .m3u playlist files using the directory name as the playlist name. By default the files are called podder.m3u.
+
+EXAMPLES
+       To download all podcasts to a single dated directory:
+
+              podder +D +d . +c config-file
+
+       To download all podcasts in config-0 to a single dated directory and all podcasts in config-1 as normal:
+
+              podder +D +d . +c config-0 -D -d +c config-1
+
+       The following config-file will just store the podcast's filename in the log file for http://lugradio.org/episodes.rss:
+
+              http://lugradio.org/episodes.rss +F
+              http://thelinuxlink.net/tllts/tllts.rss
+
+       To download a random set of feeds each day (random_feed_gen is left as an exercise for the reader):
+
+              random_feed_gen | podder +D +d . +c -
+
+AUTHOR
+       Written by Phil Seeley. Inspired by Linc Fessenden's bashpodder.
+
+FEATURES
+       The complete flexibility in option specifications was more interesting to write, rather than being strictly necessary.
+
+       Report bugs to <phil.seeley@gmail.com>.
+
+SEE ALSO
+       wget(1), xsltproc(1)
+
+podder                                                  Version 1.6 Fri, 11 May 2018 18:48:29 +1000                                              podder(1)
